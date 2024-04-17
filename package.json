@@ -1,0 +1,21 @@
+{
+  "name": "poke-api-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "apexcharts": "^3.48.0",
+    "next": "14.2.1",
+    "react": "^18",
+    "react-apexcharts": "^1.4.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18",
+    "react-query": "^3.39.3",
+    "styled-components": "^6.1.8"
+  }
+}
