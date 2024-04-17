@@ -1,9 +1,7 @@
-// pages/index.js
-
 'use client';
-// pages/index.js
-
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components'; // Import styled-components
+
 import PokemonCategoryList from './components/PokemonCategoryList';
 import PokemonList from './components/PokemonList';
 import PokemonDetails from './components/PokemonDetails';
@@ -11,6 +9,14 @@ import SearchBar from './components/SearchBar';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
+
+// Styled container for the entire Home component
+const Container = styled.div`
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+`;
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -24,7 +30,8 @@ export default function Home() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div>
+      {/* Apply styling using the Container component */}
+      <Container>
         <SearchBar onSearch={setSearchedPokemon} />
         {!selectedCategory && !selectedPokemon && (
           <PokemonCategoryList onSelectCategory={setSelectedCategory} />
@@ -35,7 +42,7 @@ export default function Home() {
         {selectedPokemon && (
           <PokemonDetails pokemonName={selectedPokemon} />
         )}
-      </div>
+      </Container>
     </QueryClientProvider>
   );
 }

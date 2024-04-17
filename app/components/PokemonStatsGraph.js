@@ -1,7 +1,18 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
+import styled from 'styled-components';
 
 const DynamicChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+// Styled components for the PokemonStatsGraph component
+const StatsGraphContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const StatsGraphTitle = styled.h3`
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
 
 const PokemonStatsGraph = ({ stats }) => {
   const labels = stats.map(stat => stat.stat.name);
@@ -32,10 +43,10 @@ const PokemonStatsGraph = ({ stats }) => {
   }];
 
   return (
-    <div>
-      <h3>Stats Graph</h3>
+    <StatsGraphContainer>
+      <StatsGraphTitle>Stats Graph</StatsGraphTitle>
       <DynamicChart options={options} series={series} type="bar" height={350} />
-    </div>
+    </StatsGraphContainer>
   );
 };
 
