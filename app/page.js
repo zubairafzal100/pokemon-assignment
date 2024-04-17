@@ -1,16 +1,15 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'; // Import styled-components
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import PokemonCategoryList from './components/PokemonCategoryList';
 import PokemonList from './components/PokemonList';
 import PokemonDetails from './components/PokemonDetails';
 import SearchBar from './components/SearchBar';
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
 
-// Styled container for the entire Home component
 const Container = styled.div`
   margin: 0 auto;
   padding: 20px;
@@ -21,18 +20,18 @@ const Container = styled.div`
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [searchedPokemon, setSearchedPokemon] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  // Log the search term whenever it changes
-  useEffect(() => {
-    console.log('Search term:', searchedPokemon);
-  }, [searchedPokemon]);
+  const handleSearch = term => {
+    setSearchTerm(term);
+    // Logic to handle category initiation based on search term
+    setSelectedCategory(term); // Assuming the search term itself is the category
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Apply styling using the Container component */}
       <Container>
-        <SearchBar onSearch={setSearchedPokemon} />
+        <SearchBar onSearch={handleSearch} />
         {!selectedCategory && !selectedPokemon && (
           <PokemonCategoryList onSelectCategory={setSelectedCategory} />
         )}

@@ -31,17 +31,21 @@ const Button = styled.button`
   border-radius: 5px;
 `;
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, onCategoryInit }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    onSearch(searchTerm); // This should trigger the state update in the parent component
+  const handleSubmit = e => {
+    e.preventDefault();
+    const trimmedSearchTerm = searchTerm.trim();
+    onSearch(trimmedSearchTerm);
+    onCategoryInit(trimmedSearchTerm);
+    setSearchTerm('');
   };
+
 
   return (
     <Container>
